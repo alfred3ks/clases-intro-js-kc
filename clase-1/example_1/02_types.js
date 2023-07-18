@@ -8,7 +8,7 @@ undefined
 BigInt
 
 Los tipos en JS pueden cambiar a lo largo de la ejecucion del codigo.
-Para saber que tipo tiene la variable usaremos la palabra typeof.
+Para saber que tipo tiene la variable usaremos la palabra typeof. Es un operador del lenguaje.
 
 Tambien tenemos la palabra Infinity. Si algo da infinito. Puede que un resultado no arroje el resultado. OJO las palabras reservadas no se pueden usar como variables.
 */
@@ -50,7 +50,7 @@ console.log(typeof numeroGrande);
 
 /*
 Ejercicio:
-Ejercicio 2: Crea y muestra el tipo de estas variables:
+Crea y muestra el tipo de estas variables:
 
 Años: 35;
 Jugador: Jordan;
@@ -58,8 +58,7 @@ Dorsal: 23;
 Pertenece al salon de la fama: Sí
 Equipo actual: ninguno
 
-Y muestra un mensaje como este
-
+Y muestra un mensaje como este:
 "Soy Jordan de 35 años ahora mi equipo es: ninguno"
 
 */
@@ -68,6 +67,12 @@ const age = 35;
 const dorsal = 23;
 const isSalonFama = true;
 const team = "ninguno";
+
+console.log("------");
+console.log(typeof age);
+console.log(typeof dorsal);
+console.log(typeof isSalonFama);
+console.log(typeof team);
 
 const mensaje = `Soy Jordan tengo ${age} años, ahora mi equipo es ${team}`;
 console.log(mensaje);
