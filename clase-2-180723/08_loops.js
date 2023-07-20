@@ -1,6 +1,7 @@
 /*
 Los bucles en JavaScript.
 Los bucles ofrecen una forma rápida y sencilla de hacer algo repetidamente.
+Veremos los bucles for y while.
 */
 
 // Bucle for: Muy usado para recorrer array:
