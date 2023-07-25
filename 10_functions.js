@@ -105,9 +105,9 @@ const soyUnaFuncionExpresion = function () {
 
 soyUnaFuncionExpresion();
 
-//📌📌 Las arrow functions: Funciones como expresion: =>
+//📌📌 Las arrow functions: Funciones como expresion: => Funciones flechas:
 /*
-Este tipos de funciones tiene un tema particular con "this", en las funciones como declaracion this es el objeto global, pero las funciones this es undefined. OJO con esto. No acceden al this.
+Este tipos de funciones tiene un tema particular con "this", en las funciones como declaración this es el objeto global, pero las funciones this es undefined. OJO con esto. No acceden al this.
 A la hora de escribir este tipo de funciones es escribirla de manera mas simplificada:
 const restar = (num1 = 0, num2 = 0) => {
   return num1 - num2;
@@ -174,13 +174,76 @@ const counter = () => {
 };
 
 const contador1 = counter();
+
 console.log(contador1);
 
-console.log(contador1.count());
-contador1.resetCount();
-contador1.increment();
-contador1.increment();
-contador1.increment();
-console.log(contador1.count());
+contador1.increment(); // count + 1
+contador1.increment(); // count + 1
+contador1.increment(); // count + 1
 
-// Lectura de la practica: Cuatro ejercicios obligatorios, quinto no obligatorio.
+contador1.resetCount();
+const contador2 = counter();
+console.log(contador2.count());
+contador2.increment();
+contador2.increment();
+contador2.increment();
+console.log('contador1', contador1.count());
+console.log('contador2', contador2.count());
+
+// Lectura de la práctica: Cuatro ejercicios obligatorios, quinto no obligatorio.
+
+//📌📌Clase 5: Continuamos.
+
+// 📌 Otro ejemplo:
+/*
+Crear un closure de una calculadora que pueda hacer las siguientes operaciones guardando el resultado.
+
+OJO Este ejemplo algo asi es el ejercicio 5 de lo que tengo que entregar:
+*/
+
+const calculadora = () => {
+  let resultado = 0;
+  const sumar = (num) => (resultado += num);
+  const restar = (num) => (resultado -= num);
+  const multiplicar = (num) => (resultado *= num);
+  const dividir = (num) => (resultado /= num);
+
+  return {
+    sumar,
+    restar,
+    multiplicar,
+    dividir,
+  };
+};
+
+const miCalculadora = calculadora();
+
+console.log(miCalculadora.sumar(5)); // Debería imprimir 5
+console.log(miCalculadora.restar(2)); // Debería imprimir 3
+console.log(miCalculadora.multiplicar(4)); // Debería imprimir 12
+console.log(miCalculadora.dividir(2)); // Debería imprimir 6
+console.log(miCalculadora.sumar(10)); // Debería imprimir 16
+
+// 📌📌 callbacks:---------------
+// Pasar una función como parametro, callback:
+const realizarOperacion = (num1, num2, operacion) => {
+  // Aqui vemos el callback:
+  return operacion(num1, num2);
+};
+
+// Funciones que pasaremos como callback:
+const suma = (a, b) => a + b;
+const resta = (a, b) => a - b;
+
+// Pasamos una función como callback:
+let resultadoSuma = realizarOperacion(10, 20, suma);
+console.log(resultadoSuma);
+let resultadoResta = realizarOperacion(17, 5, resta);
+console.log(resultadoResta);
+
+// Vemos como pasamos la función directamente, esto es muy común verlo:
+let resultadoMensaje = realizarOperacion(10, 20, function (num1, num2) {
+  return `${num1} - ${num2}`;
+}); // 10 - 20
+
+console.log(resultadoMensaje);
