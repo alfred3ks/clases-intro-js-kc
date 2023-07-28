@@ -54,7 +54,7 @@ shoppingCar2.pop();
 console.log(shoppingCar1);
 console.log(shoppingCar2);
 
-// Solucion: Hacemos una copia con el spread operator: Asi no se modifica el original:
+// Solución: Hacemos una copia con el spread operator: Asi no se modifica el original:
 // const shoppingCar3 = [].concat(shoppingCar1);
 const shoppingCar3 = [...shoppingCar1];
 shoppingCar3.push('nuevo');
@@ -240,3 +240,78 @@ const post2kTitles = libros
   .map((libroPost2k) => libroPost2k.titulo);
 
 console.log(post2kTitles);
+
+// Vemos como separar este array de objetos en dos arrays: Segun una entrevista de trabajo:
+const arr1 = [],
+  arr2 = [];
+libros.forEach((libro) => {
+  if (libro.annio > 2000) arr1.push(libro);
+  else arr2.push(libro);
+});
+
+console.log(arr1);
+console.log(arr2);
+
+console.log('---Reduce---');
+//📌📌 reduce, find, findIndex:
+// Métodos de los array.
+// reduce, algo mas complejo, que recibe un array y retorna una sola cosa, un string, un numero, etc. Recibe una funcion y luego un accum, con sus items, y la funcion callback un valor incial que ahora es cero:
+
+const myNumbers = [1, 2, 4, 5];
+const reduce = myNumbers.reduce((accum, item) => {
+  console.log('accum:' + accum);
+  console.log('item:' + item);
+  const resultado = accum + item;
+  return resultado;
+}, 0);
+
+console.log(reduce);
+
+// Otro ejemplo:
+const transactions = [
+  { id: 'trx001', amount: 100, description: 'Purchase 1' },
+  { id: 'trx002', amount: 50, description: 'Purchase 2' },
+  { id: 'trx003', amount: 200, description: 'Purchase 3' },
+];
+
+/*
+Usando reduce debemos obtener este resultado:
+const resultado = {
+  trx001: { id: 'trx001', amount: 100, description: 'Purchase 1' },
+  trx002: { id: 'trx002', amount: 50, description: 'Purchase 2' },
+  trx003: { id: 'trx003', amount: 200, description: 'Purchase 3' }
+}
+*/
+
+const resultado = transactions.reduce((accum, item) => {
+  accum[item.id] = item;
+  return accum;
+}, {});
+
+console.log(resultado);
+
+//📌📌 find, findIndex: Para buscar y retorna un {}
+const trx001Find = transactions.find((transaction) => {
+  return transaction.id === 'trx001';
+});
+
+console.log(trx001Find);
+
+// Lo vemos con una funcion:
+const getTransaction = (tId) => {
+  const trx = transactions.find((transaction) => {
+    return transaction.id === tId;
+  });
+  if (!trx) throw new Error('Not found');
+  return trx;
+};
+
+const trx001 = getTransaction('trx002');
+console.log(trx001);
+
+// findIndex: retorna el index:
+const trx001Index = transactions.findIndex((transaction) => {
+  return transaction.id === 'trx001';
+});
+
+console.log(trx001Index);
